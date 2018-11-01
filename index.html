@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+           width: 500px;
+           border: 1px solid #a0a0a0; 
+           margin: 100px auto;
+           min-height: 200px;
+           padding-top: 50px;
+        }
+        #input {
+            display: block;
+            width: 50%;
+            margin: 0 auto;
+            font-size: 18px;
+            padding: 8px;
+        }
+        #text {
+            padding: 8px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="box">
+        
+        <input type="text" id="input">
+       
+        <p id="text"></p>
+    </div>
+    <script>
+        /**
+         * 使用了监听属性的逻辑，属性改变，就需要执行相应方法（demo.js）
+         * 
+         * 实际使用上：
+         * 订阅器Dep、订阅者Watcher
+         * 一个属性的getter可以多处触发或多个dom使用。所以属性setter的时候需要执行多个改变view的方法
+         * 把执行一个改变view的方法抽象成一个订阅者Watcher
+         * 有一个容器专门收集Watcher，叫做订阅器Dep
+         * 
+         * Watcher初始化的时候，添加到Dep
+         * 属性每次setter的时候，执行Dep中所有Watcher
+         */
+    </script>
+    <script src="./js/observer.js"></script>
+    <script src="./js/watcher.js"></script>
+    <script src="./js/index.js"></script>
+    <script>
+        var ele = document.querySelector('#text');
+        var twoTay = new TwoWay({
+            text: 'hello world'
+        }, ele, 'text');
+
+        window.setTimeout(function () {
+            console.log('值改变了');
+            twoTay.text = 'world';
+        }, 2000);
+    </script>
+</body>
+</html>
